@@ -32,7 +32,7 @@ State = [0, 1, 0, 0, 0.01, 0, 0, 0, 0, 0, 0, 0, 622.2, 622.2, 622.2, 622.2]
 t = np.linspace(0, 0.1)
 Input = [625, 625, 625, 625]
 x_real1 = Q1.motion1(State, Input, t)
-#x_real2 = Q1.motion2(State, Input, t)
+
 
 x_simulated = Q1.rk4(t, State, Input,2)
 
