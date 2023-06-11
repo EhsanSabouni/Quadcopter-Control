@@ -26,13 +26,31 @@ trajectory = []
 Q1 = Quad(M, Ixx, Iyy, Izz, Ir, l, k, b0, b1, beta0, beta1, beta2, k1, p1, Ax, Ay, Az, g)
 # initial condition
 
-State = [-5, -8, 3, 4, -10, 1, 5, 8, -1, 12, 0, 0.5, 600, 75.2, 250.2, 50.2]
-
-teval = 0.25
-timespan = [0, teval]
-method = 'RK23'
-Input = [600,100 ,200 ,250]
-x_real = Q1.motion(State, Input, method, timespan, teval)
+State = [0, 1, 0, 0, 0.01, 0, 0, 0, 0, 0, 0, 0, 622.2, 622.2, 622.2, 622.2]
 
 
-plt.figure(1)
+t = np.linspace(0, 0.1)
+Input = [625, 625, 625, 625]
+x_real1 = Q1.motion(State, Input, t)
+
+
+x_simulated = Q1.rk4(t, State, Input, 2)
+
+#plt.figure(1)
+#plt.subplot(2, 1, 1)
+#plt.plot(t, x[:, 0], label='x')
+#plt.plot(t, x[:, 2], label='y')
+#plt.plot(t, x[:, 4], label='z')
+#plt.legend()
+#plt.subplot(2, 1, 2)
+#plt.plot(t, x[:, 1], label='vx')
+#plt.plot(t, x[:, 3], label='vy')
+#plt.plot(t, x[:, 5], label='vz')
+#plt.legend()
+#plt.xlabel('time')
+
+#plt.figure(2)
+#plt.axes(projection='3d').plot3D(x[:, 0], x[:, 2], x[:, 4])
+#plt.xlabel('x')
+#plt.xlabel('y')
+#plt.show()
