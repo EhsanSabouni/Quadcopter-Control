@@ -98,14 +98,15 @@ class Quad:
         for i in range(n):
             k1 = (dynamics(t0, state))
             k2 = (dynamics((t0 + h / 2), (state + h * k1 / 2)))
-            k3 = (dynamics((t0 + h / 2), (state + h * k2 / 2)))
-            k4 = (dynamics((t0 + h), (state + h * k3)))
-            k = h * (k1 + 2 * k2 + 2 * k3 + k4) / 6
+            #k3 = (dynamics((t0 + h / 2), (state + h * k2 / 2)))
+            #k4 = (dynamics((t0 + h), (state + h * k3)))
+            #k = h * (k1 + 2 * k2 + 2 * k3 + k4) / 6
+            k = h * k1
             xn = state + k
             state = xn
             t0 = t0 + h
 
-        return xn
+        return xn[0:16]
     def discretedynamics(self, dt: float, x, u):
         # [(x,0), (vx,1), (y,2), (vy,3),  (z,4), (vz,5), (phi,6), (omega_phi,7), (theta,8),
         # (omega_theta,9), (psi,10), (omega_psi,11), (omega1,12), (omega2,13), (omega3,14), (omega4,15),

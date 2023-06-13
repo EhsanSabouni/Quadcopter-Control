@@ -32,7 +32,7 @@ Q1 = Quad(M, Ixx, Iyy, Izz, Ir, l, k, b0, b1, beta0, beta1, beta2, k1, p1, Ax, A
 #initial condition
 positions = [0, 0, 0.01]  #x, y, z
 angles = np.zeros(3)  #phi, theta, psi
-omegas = [6.35/np.sqrt(k), 6.35/np.sqrt(k), 6.35/np.sqrt(k), 6.35/np.sqrt(k)] #omega1, omega2, omega3, omega4
+omegas = [6.35/np.sqrt(k), 6.35/np.sqrt(k), 6.35/np.sqrt(k), (6.35-0.5)/np.sqrt(k)] #omega1, omega2, omega3, omega4
 State = [positions[0], 0, positions[1], 0, positions[2], 0, angles[0], 0, angles[1], 0, angles[2], 0, omegas[0], omegas[1], omegas[2], omegas[3]]
 # inputs
 Input = [0, 0, 0, 0]
@@ -55,6 +55,7 @@ for i in range(len(t)-1):
     timespan = [t[i], t[i+1]]
     teval = t[i+1]
     State = Q1.motion(Q1.dynamics, State, Input, method, timespan, teval)
+    #State = Q1.rk4(Q1.dynamics, timespan, State, Input, 100)
     positions = [State[0], State[2], State[4]]
     angles = [State[6], State[8], State[10]]
     Data_position[i+1] = positions
