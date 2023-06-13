@@ -98,10 +98,10 @@ class Quad:
         for i in range(n):
             k1 = (dynamics(t0, state))
             k2 = (dynamics((t0 + h / 2), (state + h * k1 / 2)))
-            #k3 = (dynamics((t0 + h / 2), (state + h * k2 / 2)))
-            #k4 = (dynamics((t0 + h), (state + h * k3)))
-            #k = h * (k1 + 2 * k2 + 2 * k3 + k4) / 6
-            k = h * k1
+            k3 = (dynamics((t0 + h / 2), (state + h * k2 / 2)))
+            k4 = (dynamics((t0 + h), (state + h * k3)))
+            k = h * (k1 + 2 * k2 + 2 * k3 + k4) / 6
+            #k = h * k1
             xn = state + k
             state = xn
             t0 = t0 + h
